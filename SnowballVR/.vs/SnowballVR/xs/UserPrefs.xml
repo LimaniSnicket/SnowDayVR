@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{F9A30A65-106E-E831-E041-34D75B82C766}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SnowballBehavior.cs">
+    <Files>
+      <File FileName="Assets/Scripts/ScoreManager.cs" Line="18" Column="10" />
+      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="3" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a4b16681-0a02-4503-be9a-b79c8f2a1d1b" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
