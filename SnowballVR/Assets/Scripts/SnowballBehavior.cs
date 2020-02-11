@@ -11,6 +11,7 @@ public class SnowballBehavior : MonoBehaviour
     Rigidbody snowballBody { get => GetComponent<Rigidbody>(); }
     SphereCollider snowballCollider { get => GetComponent<SphereCollider>(); }
     float sizeFactor { get => Mathf.Floor(snowballBody.mass + snowballCollider.radius); }
+    public static event Action<Collider, float> SnowballCollision;
 
     private void Start()
     {
@@ -35,6 +36,17 @@ public class SnowballBehavior : MonoBehaviour
     {
         snowballBody.mass += Time.deltaTime;
         transform.localScale += Vector3.one * Time.deltaTime;
+    }
+
+
+    void BroadcastSnowballHit(Collider c)
+    {
+        SnowballCollision(c, sizeFactor);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        BroadcastSnowballHit(collision.collider);
     }
 
     private void OnDestroy()

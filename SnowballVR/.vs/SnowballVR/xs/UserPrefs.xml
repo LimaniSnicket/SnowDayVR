@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{F9A30A65-106E-E831-E041-34D75B82C766}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SnowballBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AudioManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/ScoreManager.cs" Line="18" Column="10" />
-      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="3" Column="14" />
+      <File FileName="Assets/Scripts/ScoreManager.cs" Line="26" Column="25" />
+      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="57" Column="10" />
+      <File FileName="Assets/Scripts/VehicleBehavior.cs" />
+      <File FileName="Assets/Scripts/HandManager.cs" Line="18" Column="37" />
+      <File FileName="Assets/Scripts/AudioManager.cs" Line="6" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a4b16681-0a02-4503-be9a-b79c8f2a1d1b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="abb48930-914b-40f8-b328-85c32b3f5164" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
