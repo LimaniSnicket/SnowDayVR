@@ -16,6 +16,7 @@ public class VehicleBehavior : MonoBehaviour
             { "Body", 10}
         };
     }
+    public CarInfo CarInformation;
     public static event Action<float, int> SnowballHit;
     public List<Collider> CollidersOnVehicle;
     private Vector3 Destination;
