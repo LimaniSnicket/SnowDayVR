@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         if (scoreManager == null) { scoreManager = this; } else { Destroy(this); }
-        SnowballBehavior.SnowballHit += UpdateScore;
+       VehicleBehavior.SnowballHit += UpdateScore;
     }
 
     private void Update()
@@ -21,13 +21,13 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void UpdateScore(float snowballSize, float carModifier)
+    void UpdateScore(float carModifier, float snowballSize)
     {
         CurrentScore += Mathf.FloorToInt(snowballSize * carModifier);
     }
 
     private void OnDestroy()
     {
-        SnowballBehavior.SnowballHit -= UpdateScore;
+        VehicleBehavior.SnowballHit -= UpdateScore;
     }
 }
