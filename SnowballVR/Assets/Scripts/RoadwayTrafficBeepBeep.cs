@@ -27,11 +27,13 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour
     {
         if (LeftLaneTraffic.CarsSpawned.Contains(vb))
         {
+            Debug.Log("Destroying a vehicle in the Left Lane");
             LeftLaneTraffic.CarsSpawned.Remove(vb);
         }
 
         if (RightLaneTraffic.CarsSpawned.Contains(vb))
         {
+            Debug.Log("Destroying a vehicle in the Right Lane");
             RightLaneTraffic.CarsSpawned.Remove(vb);
         }
     }

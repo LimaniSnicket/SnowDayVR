@@ -29,7 +29,7 @@ public class VehicleBehavior : MonoBehaviour
     public void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, Destination, Time.deltaTime * 5f);
-        if (DestinationReached()) { FuckingYeet(); }
+        if (DestinationReached()) { Destroy(gameObject); }
     }
 
     void OnSnowballCollision(Collider c, float snowballSize)
