@@ -19,7 +19,7 @@ public class SnowballBehavior : MonoBehaviour
         transform.localScale = Vector3.one * 0.001f;
     }
 
-    public float addForce = 0;
+    float addForce = 0;
 
     private void Update()
     {
@@ -50,6 +50,12 @@ public class SnowballBehavior : MonoBehaviour
     {
         snowballBody.mass += Time.deltaTime/10f;
         transform.localScale += Vector3.one * Time.deltaTime/5f;
+    }
+
+    public void ScaleUp(float massToAdd)
+    {
+        snowballBody.mass += massToAdd;
+        transform.localScale += Vector3.one * massToAdd / 2;
     }
 
 
