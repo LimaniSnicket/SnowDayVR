@@ -19,6 +19,8 @@ public class SnowballBehavior : MonoBehaviour
         transform.localScale = Vector3.one * 0.001f;
     }
 
+    public float addForce = 0;
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -30,18 +32,31 @@ public class SnowballBehavior : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            addForce += Time.deltaTime * 2;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            snowballBody.AddForce((Vector3.forward + Vector3.up) * addForce, ForceMode.Impulse);
+            addForce = 0;
+        }
+
     }
 
     void ScaleUp()
     {
-        snowballBody.mass += Time.deltaTime;
-        transform.localScale += Vector3.one * Time.deltaTime;
+        snowballBody.mass += Time.deltaTime/10f;
+        transform.localScale += Vector3.one * Time.deltaTime/5f;
     }
 
 
     void BroadcastSnowballHit(Collider c)
     {
         SnowballCollision(c, sizeFactor);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
