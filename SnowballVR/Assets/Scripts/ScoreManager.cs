@@ -13,17 +13,13 @@ public class ScoreManager : MonoBehaviour
        VehicleBehavior.SnowballHit += UpdateScore;
     }
 
-    private void Update()
+    void UpdateScore(float snowballSize, int carModifier)
     {
+        CurrentScore += Mathf.FloorToInt(snowballSize * carModifier);
         if (CurrentScore > PlayerPrefs.GetInt("Highscore", 0))
         {
             PlayerPrefs.SetInt("Highscore", CurrentScore);
         }
-    }
-
-    void UpdateScore(float carModifier, float snowballSize)
-    {
-        CurrentScore += Mathf.FloorToInt(snowballSize * carModifier);
     }
 
     private void OnDestroy()

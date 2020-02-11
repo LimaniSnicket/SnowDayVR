@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{F9A30A65-106E-E831-E041-34D75B82C766}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AudioManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RoadwayTrafficBeepBeep.cs">
     <Files>
-      <File FileName="Assets/Scripts/ScoreManager.cs" Line="26" Column="25" />
-      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="57" Column="10" />
-      <File FileName="Assets/Scripts/VehicleBehavior.cs" />
-      <File FileName="Assets/Scripts/HandManager.cs" Line="18" Column="37" />
-      <File FileName="Assets/Scripts/AudioManager.cs" Line="6" Column="19" />
+      <File FileName="Assets/Scripts/ScoreManager.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="48" Column="6" />
+      <File FileName="Assets/Scripts/VehicleBehavior.cs" Line="31" Column="108" />
+      <File FileName="Assets/Scripts/HandManager.cs" Line="16" Column="54" />
+      <File FileName="Assets/Scripts/AudioManager.cs" Line="16" Column="104" />
+      <File FileName="Assets/Scripts/RoadwayTrafficBeepBeep.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

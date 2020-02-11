@@ -42,6 +42,7 @@ public class SnowballBehavior : MonoBehaviour
     void BroadcastSnowballHit(Collider c)
     {
         SnowballCollision(c, sizeFactor);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)

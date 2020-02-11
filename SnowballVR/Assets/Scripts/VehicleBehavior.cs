@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(Collider))]
 public class VehicleBehavior : MonoBehaviour
 {
     //make a dictionary you fucking nerd !!!
@@ -15,21 +16,53 @@ public class VehicleBehavior : MonoBehaviour
             { "Body", 10}
         };
     }
-    public static event Action<float, float> SnowballHit;
+    public static event Action<float, int> SnowballHit;
+    public List<Collider> CollidersOnVehicle;
+    private Vector3 Destination;
 
     private void Start()
     {
         SnowballBehavior.SnowballCollision += OnSnowballCollision;
+        CollidersOnVehicle.AddRange(transform.GetComponentsInChildren<Collider>());
+    }
+
+    public void Update()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, Destination, Time.deltaTime * 5f);
+        if (DestinationReached()) { FuckingYeet(); }
     }
 
     void OnSnowballCollision(Collider c, float snowballSize)
     {
+        if (CollidersOnVehicle == null || CollidersOnVehicle.Count <= 0) { return; }
+        if (CollidersOnVehicle.Contains(c))
+        {
+            string cTag = c.tag;
+            if (TagToPointValueLookup.ContainsKey(cTag))
+            {
+                SnowballHit(snowballSize, TagToPointValueLookup[cTag]);
+            }
+        }
+    }
 
+    public void SetDestination(Vector3 set) { Destination = set; }
+
+    bool DestinationReached()
+    {
+        return Mathf.Approximately(Vector3.Distance(transform.position, Destination), 0f);
+    }
+
+    void FuckingYeet()
+    {
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.AddForce(Destination + new Vector3(0,20,0), ForceMode.Impulse);
+        rb.AddTorque(Destination + new Vector3(100, 100, 100));
     }
 
     private void OnDestroy()
     {
         SnowballBehavior.SnowballCollision -= OnSnowballCollision;
+        RoadwayTrafficBeepBeep.VehicleDestroyed(this);
     }
 }
 

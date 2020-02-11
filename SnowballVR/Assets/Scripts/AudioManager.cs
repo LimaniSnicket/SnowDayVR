@@ -8,16 +8,16 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         if (audioManager == null) { audioManager = this; } else { Destroy(this); }
-        SnowballBehavior.SnowballHit += OnSnowballHit;
+        VehicleBehavior.SnowballHit += OnSnowballHit;
     }
 
-    void OnSnowballHit(float snowBallSize, float pointsAdded)
+    void OnSnowballHit(float snowBallSize, int pointsAdded)
     {
         //snowball size corresponding to volume of SFX, points added corresponding to tone/pitch of SFX?
     }
 
     private void OnDestroy()
     {
-        SnowballBehavior.SnowballHit -= OnSnowballHit;
+        VehicleBehavior.SnowballHit -= OnSnowballHit;
     }
 }
