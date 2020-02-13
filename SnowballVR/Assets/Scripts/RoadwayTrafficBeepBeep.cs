@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
 {
@@ -12,6 +13,7 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
 
     public static Queue<CarInfo> CarsToSpawn;
     public List<CarInfo> CarsSortedByFrequency;
+    private static Dictionary<float, List<CarInfo>> CarsByFrequency;
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
         CarsSortedByFrequency = new List<CarInfo>(Resources.LoadAll<CarInfo>("CarInformation"));
         CarsSortedByFrequency.Sort(Compare);
         CarsToSpawn = new Queue<CarInfo>();
+        CarsByFrequency = CarTypeToFrequencyLookup(CarsSortedByFrequency);
         StartCoroutine(MaintainCarQueue());
     }
 
@@ -50,9 +53,12 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
     {
         while (CarsToSpawn.Count < 10)
         {
-            // float v = Mathf.Floor(UnityEngine.Random.Range(0, 1) * 10);
-            int v = Mathf.FloorToInt(UnityEngine.Random.Range(0, beepBeep.CarsSortedByFrequency.Count));
-            CarsToSpawn.Enqueue(beepBeep.CarsSortedByFrequency[v]);
+            //// float v = Mathf.Floor(UnityEngine.Random.Range(0, 1) * 10);
+            //int v = Mathf.FloorToInt(UnityEngine.Random.Range(0, beepBeep.CarsSortedByFrequency.Count));
+            //CarsToSpawn.Enqueue(beepBeep.CarsSortedByFrequency[v]);
+            float f = GetCarListByFrequency();
+            List<CarInfo> c = CarsByFrequency[f];
+            CarsToSpawn.Enqueue(c[0]);
             yield return null;
         }
         yield return null;
@@ -67,7 +73,36 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
         return 1;
     }
 
- 
+    Dictionary<float, List<CarInfo>> CarTypeToFrequencyLookup(List<CarInfo> c)
+    {
+        Dictionary<float, List<CarInfo>> d = new Dictionary<float,List<CarInfo>>();
+        if(c.Count <= 0) { return d; }
+        for (int i = 0; i < c.Count; i ++)
+        {
+            if (d.ContainsKey(c[i].SpawnFrequency))
+            {
+                d[c[i].SpawnFrequency].Add(c[i]);
+            } else
+            {
+                d.Add(c[i].SpawnFrequency, new List < CarInfo > { c[i] });
+            }
+        }
+        return d;
+    }
+
+    static float GetCarListByFrequency(float max = 1, float mult = 10)
+    {
+        float f = Mathf.Floor(UnityEngine.Random.Range(0, max) * mult);
+        if (CarsByFrequency.ContainsKey(f)) { return f; }
+        if(f >= CarsByFrequency.Last().Key) { return CarsByFrequency.Last().Key; }
+        for (int i = 0; i < CarsByFrequency.Keys.Count; i++)
+        {
+            if(f <= CarsByFrequency.ElementAt(i).Key) { return f; }
+        }
+        return CarsByFrequency.Last().Key;
+    }
+
+   
 }
 
 [Serializable]
@@ -107,7 +142,7 @@ public class TrafficSpawner
             CarInfo i = RoadwayTrafficBeepBeep.CarsToSpawn.Dequeue();
             VehicleBehavior newVehicle = i.GenerateCar(SpawnPosition);
             newVehicle.CarInformation = i;
-            newVehicle.SetDestination(Destination.position);
+            newVehicle.SetVehicleValues(Destination.position, i.MaxSpeed);
             CarsSpawned.Add(newVehicle);
         }
     }

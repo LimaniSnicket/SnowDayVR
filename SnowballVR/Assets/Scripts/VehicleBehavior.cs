@@ -20,6 +20,7 @@ public class VehicleBehavior : MonoBehaviour
     public static event Action<float, int> SnowballHit;
     public List<Collider> CollidersOnVehicle;
     private Vector3 Destination;
+    private float Speed;
 
     private void Start()
     {
@@ -47,6 +48,11 @@ public class VehicleBehavior : MonoBehaviour
     }
 
     public void SetDestination(Vector3 set) { Destination = set; }
+    public void SetVehicleValues(Vector3 destination, float speedCap)
+    {
+        SetDestination(destination);
+        Speed = UnityEngine.Random.Range(5f, speedCap);
+    }
 
     bool DestinationReached()
     {
