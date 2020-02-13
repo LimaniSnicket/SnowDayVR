@@ -15,6 +15,10 @@ public class SnowballBehavior : MonoBehaviour
 
     private void Start()
     {
+        if (Snowfall.activeSnowballs != null && !Snowfall.activeSnowballs.Contains(this))
+        {
+            Snowfall.activeSnowballs.Add(this);
+        }
         snowballBody.mass = 0.001f;
         transform.localScale = Vector3.one * 0.001f;
     }
@@ -74,5 +78,9 @@ public class SnowballBehavior : MonoBehaviour
     {
         Instantiate(HitParticle, snowballBody.centerOfMass, new Quaternion(0,0,0,0));
         Debug.Log(sizeFactor);
+        if (Snowfall.activeSnowballs.Contains(this))
+        {
+            Snowfall.activeSnowballs.Remove(this);
+        }
     }
 }
