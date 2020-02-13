@@ -1,20 +1,21 @@
 ﻿<Properties StartupConfiguration="{F9A30A65-106E-E831-E041-34D75B82C766}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Snowfall.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/BeepBeepEditor.cs">
     <Files>
       <File FileName="Assets/Scripts/ScoreManager.cs" Line="21" Column="59" />
-      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="19" Column="53" />
-      <File FileName="Assets/Scripts/VehicleBehavior.cs" Line="54" Column="56" />
+      <File FileName="Assets/Scripts/SnowballBehavior.cs" />
+      <File FileName="Assets/Scripts/VehicleBehavior.cs" />
       <File FileName="Assets/Scripts/HandManager.cs" />
       <File FileName="Assets/Scripts/AudioManager.cs" />
-      <File FileName="Assets/Scripts/RoadwayTrafficBeepBeep.cs" Line="61" Column="39" />
-      <File FileName="Assets/ScriptableObjects/CarInfo.cs" Line="24" Column="6" />
-      <File FileName="Assets/Scripts/SnowMoundBehavior.cs" Line="5" Column="2" />
-      <File FileName="Assets/Scripts/Snowfall.cs" Line="3" Column="14" />
+      <File FileName="Assets/Scripts/RoadwayTrafficBeepBeep.cs" Line="33" Column="42" />
+      <File FileName="Assets/ScriptableObjects/CarInfo.cs" />
+      <File FileName="Assets/Scripts/SnowMoundBehavior.cs" />
+      <File FileName="Assets/Scripts/Snowfall.cs" Line="25" Column="66" />
+      <File FileName="Assets/Editor/BeepBeepEditor.cs" Line="6" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5e1af7b8-76b1-40f0-9b13-6581fc67ece3" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8daad3cc-35b6-4893-b514-35cfcb733db6" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

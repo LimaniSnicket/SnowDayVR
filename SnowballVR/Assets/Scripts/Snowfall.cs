@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Snowfall : MonoBehaviour
 {
     private static Snowfall snowfall;
-    public GameObject snowFallPrefab;
+    public static ParticleSystem snowFallParticle;
 
     public static List<SnowballBehavior> activeSnowballs;
 
@@ -20,6 +20,10 @@ public class Snowfall : MonoBehaviour
     {
         if (snowfall == null) { snowfall = this; } else { Destroy(this); }
         activeSnowballs = new List<SnowballBehavior>();
+        TimeRemaining = 500f;
+        snowFallParticle = GetComponentInChildren<ParticleSystem>();
+        Debug.Log("Obtained reference to Snowfall Particle System");
+        RateOfIncrease = 0.1f;
     }
 
     private void Update()
@@ -29,5 +33,10 @@ public class Snowfall : MonoBehaviour
         {
             GameTimerDiminished();
         }
+    }
+
+    public static bool Snowing()
+    {
+        return snowfall.TimeRemaining > 0;
     }
 }

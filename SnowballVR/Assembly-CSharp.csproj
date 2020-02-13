@@ -396,6 +396,8 @@
     <Compile Include="Assets\Scripts\RoadwayTrafficBeepBeep.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\SnowballBehavior.cs" />
+    <Compile Include="Assets\Scripts\Snowfall.cs" />
+    <Compile Include="Assets\Scripts\SnowMoundBehavior.cs" />
     <Compile Include="Assets\Scripts\VehicleBehavior.cs" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_PC_SingleComponent.shader" />
     <None Include="Assets\Oculus\Avatar\Samples\CrossPlatform\Readme.txt" />
@@ -1005,8 +1007,6 @@
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Hub/Editor/2018.4.16f1/Unity.app/Contents/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
     </Reference>
-    <Compile Include="Assets\Scripts\SnowMoundBehavior.cs" />
-    <Compile Include="Assets\Scripts\Snowfall.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Oculus.VR.Editor.csproj">

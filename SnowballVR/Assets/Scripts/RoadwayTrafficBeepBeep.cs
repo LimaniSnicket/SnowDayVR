@@ -13,7 +13,7 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
 
     public static Queue<CarInfo> CarsToSpawn;
     public List<CarInfo> CarsSortedByFrequency;
-    private static Dictionary<float, List<CarInfo>> CarsByFrequency;
+    public  Dictionary<float, List<CarInfo>> CarsByFrequency;
 
     private void Start()
     {
@@ -53,11 +53,8 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
     {
         while (CarsToSpawn.Count < 10)
         {
-            //// float v = Mathf.Floor(UnityEngine.Random.Range(0, 1) * 10);
-            //int v = Mathf.FloorToInt(UnityEngine.Random.Range(0, beepBeep.CarsSortedByFrequency.Count));
-            //CarsToSpawn.Enqueue(beepBeep.CarsSortedByFrequency[v]);
-            float f = GetCarListByFrequency();
-            List<CarInfo> c = CarsByFrequency[f];
+            float f = beepBeep.GetCarListByFrequency();
+            List<CarInfo> c = new List<CarInfo>(beepBeep.CarsByFrequency[f]);
             CarsToSpawn.Enqueue(c[0]);
             yield return null;
         }
@@ -69,7 +66,7 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
         if(a == null && b == null) { return 0; }
         if(a != null && b == null) { return -1; }
         if(a == null && b != null) { return 1; }
-        if(a.SpawnFrequency >= b.SpawnFrequency) { return -1; }
+        if(a.SpawnFrequency < b.SpawnFrequency) { return -1; }
         return 1;
     }
 
@@ -90,19 +87,27 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
         return d;
     }
 
-    static float GetCarListByFrequency(float max = 1, float mult = 10)
+     float GetCarListByFrequency(float max = 1, float mult = 10)
     {
         float f = Mathf.Floor(UnityEngine.Random.Range(0, max) * mult);
+        Debug.Log(f);
         if (CarsByFrequency.ContainsKey(f)) { return f; }
         if(f >= CarsByFrequency.Last().Key) { return CarsByFrequency.Last().Key; }
-        for (int i = 0; i < CarsByFrequency.Keys.Count; i++)
+        for (int i = 0; i < CarsByFrequency.Keys.Count-1; i++)
         {
-            if(f <= CarsByFrequency.ElementAt(i).Key) { return f; }
+            if (i == 0)
+            {
+                if(f <= CarsByFrequency.ElementAt(i).Key) { return CarsByFrequency.ElementAt(i).Key; }
+            }
+
+            if (f > CarsByFrequency.ElementAt(i).Key && f <= CarsByFrequency.ElementAt(i).Key)
+            {
+                return CarsByFrequency.ElementAt(i + 1).Key;
+            }
+
         }
         return CarsByFrequency.Last().Key;
     }
-
-   
 }
 
 [Serializable]
@@ -120,21 +125,9 @@ public class TrafficSpawner
         TimeTillSpawn = UnityEngine.Random.Range(10f, 15f);
     }
 
-    public void ManageTraffic(CarInfo carToSpawn)
+    public void ManageTraffic()
     {
         currentSpawnTimer += Time.deltaTime;
-        if (currentSpawnTimer >= TimeTillSpawn)
-        {
-            currentSpawnTimer = 0;
-            TimeTillSpawn = UnityEngine.Random.Range(10f, 15f);
-            VehicleBehavior newVehicle = carToSpawn.GenerateCar(SpawnPosition);
-            CarsSpawned.Add(newVehicle);
-        }
-    }
-
-        public void ManageTraffic()
-        {
-            currentSpawnTimer += Time.deltaTime;
         if (currentSpawnTimer >= TimeTillSpawn)
         {
             currentSpawnTimer = 0;
@@ -146,7 +139,6 @@ public class TrafficSpawner
             CarsSpawned.Add(newVehicle);
         }
     }
-
     public void DebugTimer()
     {
         Debug.Log(currentSpawnTimer);
