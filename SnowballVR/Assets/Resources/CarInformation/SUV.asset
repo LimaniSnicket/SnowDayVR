@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4487fa1990dd54cdf91f8a9cf1c35d0e, type: 3}
+  m_Name: SUV
+  m_EditorClassIdentifier: 
+  CarID: SUV
+  OnHitCarBonus: 0
+  MaxSpeed: 8
+  CarModel: {fileID: 242138929570646383, guid: 6b66f4838b5a54f1e82b910a185e86ef, type: 3}
+  AvailableTextures: []
+  SpawnFrequency: 9
+  OnHitDo: 0

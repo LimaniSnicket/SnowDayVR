@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarID: School Bus
   OnHitCarBonus: 10
-  MaxSpeed: 2
+  MaxSpeed: 6
   CarModel: {fileID: 242138929570646383, guid: 6b66f4838b5a54f1e82b910a185e86ef, type: 3}
   AvailableTextures: []
   SpawnFrequency: 1
+  OnHitDo: 0
