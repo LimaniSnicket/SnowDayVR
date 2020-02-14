@@ -55,7 +55,8 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
         {
             float f = beepBeep.GetCarListByFrequency();
             List<CarInfo> c = new List<CarInfo>(beepBeep.CarsByFrequency[f]);
-            CarsToSpawn.Enqueue(c[0]);
+            int i = c.Count > 1 ? Mathf.FloorToInt(UnityEngine.Random.Range(0,c.Count)) :0;
+            CarsToSpawn.Enqueue(c[i]);
             yield return null;
         }
         yield return null;
@@ -90,7 +91,6 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
      float GetCarListByFrequency(float max = 1, float mult = 10)
     {
         float f = Mathf.Floor(UnityEngine.Random.Range(0, max) * mult);
-        Debug.Log(f);
         if (CarsByFrequency.ContainsKey(f)) { return f; }
         if(f >= CarsByFrequency.Last().Key) { return CarsByFrequency.Last().Key; }
         for (int i = 0; i < CarsByFrequency.Keys.Count-1; i++)

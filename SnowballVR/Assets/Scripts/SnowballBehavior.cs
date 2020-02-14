@@ -21,6 +21,7 @@ public class SnowballBehavior : MonoBehaviour
         }
         snowballBody.mass = 0.001f;
         transform.localScale = Vector3.one * 0.001f;
+        snowballBody.isKinematic = true;
     }
 
     float addForce = 0;
@@ -44,6 +45,7 @@ public class SnowballBehavior : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            snowballBody.isKinematic = false;
             snowballBody.AddForce((Vector3.forward + Vector3.up) * addForce, ForceMode.Impulse);
             addForce = 0;
         }

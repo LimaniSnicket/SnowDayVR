@@ -396,6 +396,7 @@
     <Compile Include="Assets\Scripts\RoadwayTrafficBeepBeep.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\SnowballBehavior.cs" />
+    <Compile Include="Assets\Scripts\SnowballSpawner.cs" />
     <Compile Include="Assets\Scripts\Snowfall.cs" />
     <Compile Include="Assets\Scripts\SnowMoundBehavior.cs" />
     <Compile Include="Assets\Scripts\VehicleBehavior.cs" />
