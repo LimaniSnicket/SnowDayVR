@@ -7,6 +7,7 @@ public class Snowfall : MonoBehaviour
 {
     private static Snowfall snowfall;
     public static ParticleSystem snowFallParticle;
+    public GameObject DirectionalLight;
 
     public static List<SnowballBehavior> activeSnowballs;
 
@@ -33,10 +34,13 @@ public class Snowfall : MonoBehaviour
         {
             GameTimerDiminished();
         }
+        DirectionalLight.transform.Rotate(Vector3.right * 10 * Time.deltaTime);
     }
 
     public static bool Snowing()
     {
         return snowfall.TimeRemaining > 0;
     }
+
+
 }
