@@ -12,12 +12,14 @@ public class CarInfo : ScriptableObject
     public Texture[] AvailableTextures;
     public float SpawnFrequency;
     public OnHitEffect OnHitDo;
+    public Vector3 RotationOffset;
 
     public VehicleBehavior GenerateCar(Transform spawnAt, bool add = false)
     {
         GameObject g = Instantiate(CarModel);
         g.transform.position = spawnAt.position;
-        g.transform.right = spawnAt.right;
+        g.transform.forward = spawnAt.right;
+        g.transform.eulerAngles = RotationOffset;
         VehicleBehavior v = add ? g.AddComponent<VehicleBehavior>() : g.GetComponent<VehicleBehavior>(); 
         v.CarInformation = this;
         ApplyTexture(g);

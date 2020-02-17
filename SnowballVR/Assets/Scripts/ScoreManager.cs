@@ -7,10 +7,17 @@ public class ScoreManager : MonoBehaviour
     static ScoreManager scoreManager;
     public static int CurrentScore;
 
+    public int Score;
+
     private void Awake()
     {
         if (scoreManager == null) { scoreManager = this; } else { Destroy(this); }
        VehicleBehavior.SnowballHit += UpdateScore;
+    }
+
+    private void Update()
+    {
+        Score = CurrentScore;
     }
 
     void UpdateScore(float snowballSize, int carModifier)

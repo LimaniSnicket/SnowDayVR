@@ -9,7 +9,7 @@ public class SnowballSpawner : MonoBehaviour
 
     private void Update()
     {
-        spawnPosition = transform.position + GetComponent<MeshFilter>().mesh.bounds.max;
+        spawnPosition = transform.position + new Vector3(0, GetComponent<MeshFilter>().mesh.bounds.max.y, 0);
         if (Input.GetKeyDown(KeyCode.A))
         {
             Instantiate(SnowballPrefab, spawnPosition, new Quaternion(0, 0, 0, 0));

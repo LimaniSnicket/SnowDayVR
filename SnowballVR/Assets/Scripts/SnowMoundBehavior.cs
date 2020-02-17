@@ -3,13 +3,15 @@ using System.Collections;
 
 public class SnowMoundBehavior : MonoBehaviour
 {
-    public float availableSnow;
+    private static SnowMoundBehavior snowMound;
+    public static float availableSnow;
 
     public void Start()
     {
         Snowfall.GameTimerDiminished += OnGameTimerDiminished;
         transform.localScale = new Vector3(2, 0, 2);
         StartCoroutine(AccumulateSnow());
+        if (snowMound == null) { snowMound = this; } else { Destroy(this); }
     }
 
     private IEnumerator AccumulateSnow()
@@ -18,7 +20,7 @@ public class SnowMoundBehavior : MonoBehaviour
         while (Snowfall.Snowing())
         {
             availableSnow += Snowfall.RateOfIncrease;
-            Vector3 lerpTo = transform.localScale + Vector3.up * Snowfall.RateOfIncrease;
+            Vector3 lerpTo = transform.localScale + Vector3.up * Snowfall.RateOfIncrease/4;
             while(!transform.localScale.Approximately(lerpTo))
             {
                 transform.localScale = Vector3.Lerp(transform.localScale, lerpTo, Time.deltaTime);
