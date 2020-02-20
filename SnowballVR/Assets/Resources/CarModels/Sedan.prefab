@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2140210782823993681}
   m_Layer: 0
   m_Name: BackWheels
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140210782821797777}
-  m_Mesh: {fileID: 4300002, guid: ccd6bb693e6ca4410a807f19a1f4bbef, type: 3}
+  m_Mesh: {fileID: 4300010, guid: ccd6bb693e6ca4410a807f19a1f4bbef, type: 3}
 --- !u!23 &2140210782823993681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2140210782823993683}
   m_Layer: 0
   m_Name: FrontWheels
-  m_TagString: Untagged
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140210782821797779}
-  m_Mesh: {fileID: 4300004, guid: ccd6bb693e6ca4410a807f19a1f4bbef, type: 3}
+  m_Mesh: {fileID: 4300008, guid: ccd6bb693e6ca4410a807f19a1f4bbef, type: 3}
 --- !u!23 &2140210782823993683
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a89fd0e6a03c84c52abb6ed0ca6732e5, type: 2}
+  - {fileID: 2100000, guid: 8f339cf92548e174ebda896d56c93d1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

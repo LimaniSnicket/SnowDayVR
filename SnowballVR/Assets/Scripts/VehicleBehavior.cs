@@ -21,16 +21,27 @@ public class VehicleBehavior : MonoBehaviour
     public List<Collider> CollidersOnVehicle;
     private Vector3 Destination;
     private float Speed;
-
+    GameObject[] wheels;
     private void Start()
     {
         SnowballBehavior.SnowballCollision += OnSnowballCollision;
         CollidersOnVehicle.AddRange(transform.GetComponentsInChildren<Collider>());
+        wheels = new GameObject[2];
+        int w = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag == "Wheel")
+            {
+                wheels[w] = transform.GetChild(i).gameObject;
+                w++;
+            }
+        }
     }
 
     public void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, Destination, Time.deltaTime * Speed);
+        try { RotateWheels(); } catch (NullReferenceException) { }
         if (DestinationReached()) { Destroy(gameObject); }
     }
 
@@ -57,6 +68,15 @@ public class VehicleBehavior : MonoBehaviour
     bool DestinationReached()
     {
         return Mathf.Approximately(Vector3.Distance(transform.position, Destination), 0f);
+    }
+
+    void RotateWheels()
+    {
+        if(wheels == null || wheels.Length <= 0) { return; }
+        foreach(var w in wheels)
+        {
+            w.transform.Rotate(Vector3.right, Time.deltaTime * Speed);
+        }
     }
 
     void FuckingYeet()

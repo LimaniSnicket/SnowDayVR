@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Oculus/SampleFramework/Usage/DistanceGrab.unity
+- path: Assets/Scenes/SnowfortMain.unity
   isLoaded: 1
   isActive: 1
