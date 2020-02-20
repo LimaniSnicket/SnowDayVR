@@ -30,7 +30,7 @@ public class VehicleBehavior : MonoBehaviour
 
     public void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Destination, Time.deltaTime * 5f);
+        transform.position = Vector3.MoveTowards(transform.position, Destination, Time.deltaTime * Speed);
         if (DestinationReached()) { Destroy(gameObject); }
     }
 
@@ -51,7 +51,7 @@ public class VehicleBehavior : MonoBehaviour
     public void SetVehicleValues(Vector3 destination, float speedCap)
     {
         SetDestination(destination);
-        Speed = UnityEngine.Random.Range(5f, speedCap);
+        Speed = speedCap;
     }
 
     bool DestinationReached()

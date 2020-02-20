@@ -10,7 +10,7 @@ public class SnowballBehavior : MonoBehaviour
     public GameObject HitParticle;
     Rigidbody snowballBody { get => GetComponent<Rigidbody>(); }
     SphereCollider snowballCollider { get => GetComponent<SphereCollider>(); }
-    float sizeFactor { get => Mathf.Floor(snowballBody.mass + snowballCollider.radius); }
+    float sizeFactor { get => Mathf.Ceil(snowballBody.mass + snowballCollider.radius); }
     public static event Action<Collider, float> SnowballCollision;
 
     private void Start()
@@ -30,7 +30,7 @@ public class SnowballBehavior : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            ScaleUp();
+            ScaleUp(Time.deltaTime/5f);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -40,7 +40,7 @@ public class SnowballBehavior : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            addForce += Time.deltaTime * 2;
+            addForce += Time.deltaTime * 1.5f;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -49,7 +49,6 @@ public class SnowballBehavior : MonoBehaviour
             snowballBody.AddForce((Vector3.forward + Vector3.up) * addForce, ForceMode.Impulse);
             addForce = 0;
         }
-
     }
 
     void ScaleUp()
@@ -60,26 +59,32 @@ public class SnowballBehavior : MonoBehaviour
 
     public void ScaleUp(float massToAdd)
     {
-        snowballBody.mass += massToAdd;
-        transform.localScale += Vector3.one * massToAdd / 2;
+        if (SnowMoundBehavior.availableSnow >= massToAdd)
+        {
+            snowballBody.mass += massToAdd;
+            transform.localScale += Vector3.one * massToAdd / 2;
+            SnowMoundBehavior.availableSnow -= massToAdd / 2;
+        }
     }
 
 
     void BroadcastSnowballHit(Collider c)
     {
         SnowballCollision(c, sizeFactor);
+        Debug.Log(c.name + ": " + sizeFactor);
         Destroy(gameObject);
     }
 
+    Queue<Collider> Hits = new Queue<Collider>();
     private void OnCollisionEnter(Collision collision)
     {
-        BroadcastSnowballHit(collision.collider);
+        Hits.Enqueue(collision.collider);
+        BroadcastSnowballHit(Hits.Peek());
     }
 
     private void OnDestroy()
     {
-        Instantiate(HitParticle, snowballBody.centerOfMass, new Quaternion(0,0,0,0));
-        Debug.Log(sizeFactor);
+        Instantiate(HitParticle, transform.position, new Quaternion(0,0,0,0));
         if (Snowfall.activeSnowballs.Contains(this))
         {
             Snowfall.activeSnowballs.Remove(this);

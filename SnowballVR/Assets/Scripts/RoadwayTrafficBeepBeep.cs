@@ -29,21 +29,19 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
 
     private void Update()
     {
-        LeftLaneTraffic.ManageTraffic();
-        RightLaneTraffic.ManageTraffic();
+        LeftLaneTraffic.ManageTraffic(0);
+        RightLaneTraffic.ManageTraffic(180);
     }
 
     public static void VehicleDestroyed(VehicleBehavior vb)
     {
         if (LeftLaneTraffic.CarsSpawned.Contains(vb))
         {
-            Debug.Log("Destroying a vehicle in the Left Lane");
             LeftLaneTraffic.CarsSpawned.Remove(vb);
         }
 
         if (RightLaneTraffic.CarsSpawned.Contains(vb))
         {
-            Debug.Log("Destroying a vehicle in the Right Lane");
             RightLaneTraffic.CarsSpawned.Remove(vb);
         }
         beepBeep.StartCoroutine(MaintainCarQueue());
@@ -122,18 +120,18 @@ public class TrafficSpawner
         SpawnPosition = spawnAt.transform;
         Destination = goTo.transform;
         CarsSpawned = new List<VehicleBehavior>();
-        TimeTillSpawn = UnityEngine.Random.Range(10f, 15f);
+        TimeTillSpawn = UnityEngine.Random.Range(3f, 5f);
     }
 
-    public void ManageTraffic()
+    public void ManageTraffic(float m)
     {
         currentSpawnTimer += Time.deltaTime;
         if (currentSpawnTimer >= TimeTillSpawn)
         {
             currentSpawnTimer = 0;
-            TimeTillSpawn = UnityEngine.Random.Range(10f, 15f);
+            TimeTillSpawn = UnityEngine.Random.Range(5f, 10f);
             CarInfo i = RoadwayTrafficBeepBeep.CarsToSpawn.Dequeue();
-            VehicleBehavior newVehicle = i.GenerateCar(SpawnPosition);
+            VehicleBehavior newVehicle = i.GenerateCar(SpawnPosition, false, m);
             newVehicle.CarInformation = i;
             newVehicle.SetVehicleValues(Destination.position, i.MaxSpeed);
             CarsSpawned.Add(newVehicle);

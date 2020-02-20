@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarID: Sedan
   OnHitCarBonus: 0
-  MaxSpeed: 10
-  CarModel: {fileID: 242138929570646383, guid: 6b66f4838b5a54f1e82b910a185e86ef, type: 3}
+  MaxSpeed: 30
+  CarModel: {fileID: 2140210782821797781, guid: 4c6a6a577c90e48a79075419aa44d0b9,
+    type: 3}
   AvailableTextures: []
   SpawnFrequency: 9
   OnHitDo: 0
+  RotationOffset: {x: -90, y: 90, z: 0}
