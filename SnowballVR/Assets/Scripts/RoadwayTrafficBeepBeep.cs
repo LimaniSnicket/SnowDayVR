@@ -29,8 +29,8 @@ public class RoadwayTrafficBeepBeep : MonoBehaviour, IComparer<CarInfo>
 
     private void Update()
     {
-        LeftLaneTraffic.ManageTraffic();
-        RightLaneTraffic.ManageTraffic();
+        LeftLaneTraffic.ManageTraffic(0);
+        RightLaneTraffic.ManageTraffic(180);
     }
 
     public static void VehicleDestroyed(VehicleBehavior vb)
@@ -123,7 +123,7 @@ public class TrafficSpawner
         TimeTillSpawn = UnityEngine.Random.Range(3f, 5f);
     }
 
-    public void ManageTraffic()
+    public void ManageTraffic(float m)
     {
         currentSpawnTimer += Time.deltaTime;
         if (currentSpawnTimer >= TimeTillSpawn)
@@ -131,7 +131,7 @@ public class TrafficSpawner
             currentSpawnTimer = 0;
             TimeTillSpawn = UnityEngine.Random.Range(5f, 10f);
             CarInfo i = RoadwayTrafficBeepBeep.CarsToSpawn.Dequeue();
-            VehicleBehavior newVehicle = i.GenerateCar(SpawnPosition);
+            VehicleBehavior newVehicle = i.GenerateCar(SpawnPosition, false, m);
             newVehicle.CarInformation = i;
             newVehicle.SetVehicleValues(Destination.position, i.MaxSpeed);
             CarsSpawned.Add(newVehicle);

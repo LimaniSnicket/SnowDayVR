@@ -1,21 +1,20 @@
 ﻿<Properties StartupConfiguration="{F9A30A65-106E-E831-E041-34D75B82C766}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SnowballBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ScriptableObjects/CarInfo.cs">
     <Files>
-      <File FileName="Assets/Scripts/ScoreManager.cs" Line="20" Column="30" />
-      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="82" Column="42" />
-      <File FileName="Assets/Scripts/VehicleBehavior.cs" />
+      <File FileName="Assets/Scripts/ScoreManager.cs" Line="23" Column="35" />
+      <File FileName="Assets/Scripts/SnowballBehavior.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/VehicleBehavior.cs" Line="33" Column="105" />
       <File FileName="Assets/Scripts/HandManager.cs" />
       <File FileName="Assets/Scripts/AudioManager.cs" />
       <File FileName="Assets/Scripts/RoadwayTrafficBeepBeep.cs" />
-      <File FileName="Assets/ScriptableObjects/CarInfo.cs" />
-      <File FileName="Assets/Scripts/SnowMoundBehavior.cs" />
-      <File FileName="Assets/Scripts/Snowfall.cs" />
+      <File FileName="Assets/ScriptableObjects/CarInfo.cs" Line="22" Column="68" />
+      <File FileName="Assets/Scripts/SnowMoundBehavior.cs" Line="55" Column="70" />
       <File FileName="Assets/Scripts/SnowballSpawner.cs" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0f11b616-d4a0-4501-a582-337fb11296ad" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="393ccca8-4850-4c97-82f7-78cf736ad97f" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

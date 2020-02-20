@@ -30,7 +30,7 @@ public class HandManager : MonoBehaviour
         return g.transform.position;
     }
 
-    private static IEnumerator SufficientHandMovement(float threshold, float seconds)
+    public static IEnumerator SufficientHandMovement(float threshold, float seconds)
     {
         float t = 0;
         while(LeftHandPositionDerivative > threshold && RightHandPositionDerivative > threshold)

@@ -30,7 +30,7 @@ public class SnowballBehavior : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            ScaleUp();
+            ScaleUp(Time.deltaTime/5f);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -63,7 +63,7 @@ public class SnowballBehavior : MonoBehaviour
         {
             snowballBody.mass += massToAdd;
             transform.localScale += Vector3.one * massToAdd / 2;
-            SnowMoundBehavior.availableSnow -= massToAdd;
+            SnowMoundBehavior.availableSnow -= massToAdd / 2;
         }
     }
 
