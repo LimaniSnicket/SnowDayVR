@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Body
   - Window
+  - Wheel
   layers:
   - Default
   - TransparentFX

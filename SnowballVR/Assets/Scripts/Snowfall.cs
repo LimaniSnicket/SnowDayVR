@@ -34,7 +34,7 @@ public class Snowfall : MonoBehaviour
         {
             GameTimerDiminished();
         }
-        DirectionalLight.transform.Rotate(Vector3.right * 3 * Time.deltaTime);
+        DirectionalLight.transform.Rotate(Vector3.right * Time.deltaTime);
     }
 
     public static bool Snowing()

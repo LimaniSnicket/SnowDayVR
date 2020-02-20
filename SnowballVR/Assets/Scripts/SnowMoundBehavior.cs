@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class SnowMoundBehavior : MonoBehaviour
 {
     private static SnowMoundBehavior snowMound;
+    public float ScaleModifier;
     public static float availableSnow;
     public float SnowLeft;
     static List<Collider> CollidersInTrigger = new List<Collider>();
@@ -12,8 +13,9 @@ public class SnowMoundBehavior : MonoBehaviour
     public void Start()
     {
         Snowfall.GameTimerDiminished += OnGameTimerDiminished;
-        transform.localScale = new Vector3(2, 0, 2);
+        transform.localScale = new Vector3(100, 100, 0);
         StartCoroutine(AccumulateSnow());
+        availableSnow = 1;
         if (snowMound == null) { snowMound = this; } else { Destroy(this); }
     }
 
@@ -28,7 +30,7 @@ public class SnowMoundBehavior : MonoBehaviour
         while (Snowfall.Snowing())
         {
             availableSnow += Snowfall.RateOfIncrease;
-            Vector3 lerpTo = transform.localScale + Vector3.up * availableSnow/4;
+            Vector3 lerpTo = transform.localScale + (Vector3.forward * availableSnow/2) * ScaleModifier;
             while(!transform.localScale.Approximately(lerpTo))
             {
                 transform.localScale = Vector3.Lerp(transform.localScale, lerpTo, Time.deltaTime);
