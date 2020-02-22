@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class SnowMoundBehavior : MonoBehaviour
 {
     private static SnowMoundBehavior snowMound;
     public float ScaleModifier;
     public static float availableSnow;
+    public static bool canSpawnSnowball { get => Snowfall.activeSnowballs.Count == 0; }
     public float SnowLeft;
     static List<Collider> CollidersInTrigger = new List<Collider>();
+    public static event Action<bool> OnHandMotionDetected;
+    public static event Action<GameObject> HandToSpawn;
 
     public void Start()
     {
@@ -48,19 +52,20 @@ public class SnowMoundBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!CollidersInTrigger.Contains(other) && ValidTag(other))
+        if (!CollidersInTrigger.Contains(other) && ValidGameObject(other))
         {
             CollidersInTrigger.Add(other);
         }
         if (CollidersInTrigger.Count == 2)
         {
-            StartCoroutine(HandManager.SufficientHandMovement(1, 3));
+            OnHandMotionDetected(true);
+            HandToSpawn(CollidersInTrigger[0].gameObject);
         }
     }
 
-    bool ValidTag(Collider c)
+    bool ValidGameObject(Collider c)
     {
-        return c.tag == "RightHand" || c.tag == "LeftHand";
+        return c.gameObject == HandManager.RightHand.gameObject || c.gameObject == HandManager.LeftHand.gameObject;
     }
 
     private void OnTriggerExit(Collider other)
@@ -69,7 +74,8 @@ public class SnowMoundBehavior : MonoBehaviour
         {
             CollidersInTrigger.Remove(other);
         }
-        StopCoroutine(HandManager.SufficientHandMovement(1,3));
+        OnHandMotionDetected(false);
+        //StopCoroutine(HandManager.SufficientHandMovement(1,3));
     }
 
     private void OnDestroy()

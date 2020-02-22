@@ -5,13 +5,18 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(OVRGrabbable))]
 public class SnowballBehavior : MonoBehaviour
 {
     public GameObject HitParticle;
     Rigidbody snowballBody { get => GetComponent<Rigidbody>(); }
     SphereCollider snowballCollider { get => GetComponent<SphereCollider>(); }
+    OVRGrabbable snowballGrabbable { get => GetComponent<OVRGrabbable>(); }
+    public OVRGrabber followHand;
     float sizeFactor { get => Mathf.Ceil(snowballBody.mass + snowballCollider.radius); }
     public static event Action<Collider, float> SnowballCollision;
+
+    bool ungrabbed = true;
 
     private void Start()
     {
@@ -49,6 +54,31 @@ public class SnowballBehavior : MonoBehaviour
             snowballBody.AddForce((Vector3.forward + Vector3.up) * addForce, ForceMode.Impulse);
             addForce = 0;
         }
+
+        if (snowballGrabbable.grabbedBy != null)
+        {
+            ungrabbed = false;
+            followHand = null;
+        }
+
+        if (followHand != null && ungrabbed)
+        {
+            transform.position = followHand.transform.position;
+            Debug.Log("Still follow hand");
+        }
+
+       // snowballBody.isKinematic = !ungrabbed;
+
+    }
+
+    public void SetOVRGrabberFollow(OVRGrabber newFollowHand)
+    {
+        followHand = newFollowHand;
+    }
+
+    void Drop()
+    {
+        followHand = null;
     }
 
     void ScaleUp()

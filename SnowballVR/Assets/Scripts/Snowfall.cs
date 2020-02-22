@@ -25,6 +25,7 @@ public class Snowfall : MonoBehaviour
         snowFallParticle = GetComponentInChildren<ParticleSystem>();
         Debug.Log("Obtained reference to Snowfall Particle System");
         RateOfIncrease = 0.1f;
+        activeSnowballs.Capacity = 1;
     }
 
     private void Update()
@@ -42,5 +43,10 @@ public class Snowfall : MonoBehaviour
         return snowfall.TimeRemaining > 0;
     }
 
+    public static SnowballBehavior ActiveSnowball()
+    {
+        if(activeSnowballs == null) { return null; }
+        return activeSnowballs[0];
+    }
 
 }
