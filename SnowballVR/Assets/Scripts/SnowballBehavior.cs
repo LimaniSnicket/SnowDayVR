@@ -15,6 +15,7 @@ public class SnowballBehavior : MonoBehaviour
     public OVRGrabber followHand;
     float sizeFactor { get => Mathf.Ceil(snowballBody.mass + snowballCollider.radius); }
     public static event Action<Collider, float> SnowballCollision;
+    public List<string> IgnoreTags;
 
     bool ungrabbed = true;
 
@@ -27,6 +28,7 @@ public class SnowballBehavior : MonoBehaviour
         snowballBody.mass = 0.001f;
         transform.localScale = Vector3.one * 0.001f;
         snowballBody.isKinematic = true;
+        IgnoreTags.Add("Untagged");
     }
 
     float addForce = 0;
@@ -67,6 +69,11 @@ public class SnowballBehavior : MonoBehaviour
             Debug.Log("Still follow hand");
         }
 
+        if (transform.position.y < -200)
+        {
+            Destroy(gameObject);
+        }
+
        // snowballBody.isKinematic = !ungrabbed;
 
     }
@@ -100,6 +107,11 @@ public class SnowballBehavior : MonoBehaviour
 
     void BroadcastSnowballHit(Collider c)
     {
+        if (IgnoreTags != null && IgnoreTags.Contains(c.tag))
+        {
+            Physics.IgnoreCollision(snowballCollider, c);
+            return;
+        }
         SnowballCollision(c, sizeFactor);
         Debug.Log(c.name + ": " + sizeFactor);
         Destroy(gameObject);
