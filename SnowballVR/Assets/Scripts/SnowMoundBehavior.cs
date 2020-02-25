@@ -18,7 +18,7 @@ public class SnowMoundBehavior : MonoBehaviour
     {
         Snowfall.GameTimerDiminished += OnGameTimerDiminished;
         transform.localScale = new Vector3(100, 100, 0);
-        StartCoroutine(AccumulateSnow());
+        //StartCoroutine(AccumulateSnow());
         availableSnow = 1;
         if (snowMound == null) { snowMound = this; } else { Destroy(this); }
     }
@@ -26,11 +26,12 @@ public class SnowMoundBehavior : MonoBehaviour
     private void Update()
     {
         SnowLeft = availableSnow;
+        Vector3 s = transform.localScale + (Vector3.forward * availableSnow / 10);
+        transform.localScale = s;
     }
 
     private IEnumerator AccumulateSnow()
     {
-        yield return new WaitForSecondsRealtime(.1f);
         while (Snowfall.Snowing())
         {
             availableSnow += Snowfall.RateOfIncrease;
@@ -40,7 +41,7 @@ public class SnowMoundBehavior : MonoBehaviour
                 transform.localScale = Vector3.Lerp(transform.localScale, lerpTo, Time.deltaTime);
                 yield return null;
             }
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForEndOfFrame();
         }
         yield return null;
     }

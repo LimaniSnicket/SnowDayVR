@@ -38,5 +38,6 @@ public class CarInfo : ScriptableObject
 public enum OnHitEffect
 {
     NONE = 0,
-    PENALTY = 1
+    PENALTY = 1,
+    BONUS = 2
 }

@@ -13,6 +13,7 @@ public class VehicleBehavior : MonoBehaviour
         get => new Dictionary<string, int>
         {
             { "Window", 100},
+            { "Wheel", 25},
             { "Body", 10}
         };
     }
@@ -53,7 +54,8 @@ public class VehicleBehavior : MonoBehaviour
             string cTag = c.tag;
             if (TagToPointValueLookup.ContainsKey(cTag))
             {
-                SnowballHit(snowballSize, TagToPointValueLookup[cTag]);
+                DoOnHitEffect(c, snowballSize);
+                //SnowballHit(snowballSize, TagToPointValueLookup[cTag]);
             }
         }
     }
@@ -84,6 +86,22 @@ public class VehicleBehavior : MonoBehaviour
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         rb.AddForce(Destination + new Vector3(0,20,0), ForceMode.Impulse);
         rb.AddTorque(Destination + new Vector3(100, 100, 100));
+    }
+
+    void DoOnHitEffect(Collider c, float s)
+    {
+        switch (CarInformation.OnHitDo)
+        {
+            case OnHitEffect.NONE:
+                SnowballHit(s, TagToPointValueLookup[c.tag]);
+                break;
+            case OnHitEffect.PENALTY:
+                SnowballHit(s, TagToPointValueLookup[c.tag] * -1);
+                break;
+            case OnHitEffect.BONUS:
+                SnowballHit(s, (int)(TagToPointValueLookup[c.tag] * 1.5f));
+                break;
+        }
     }
 
     private void OnDestroy()
