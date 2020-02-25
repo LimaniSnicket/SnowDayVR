@@ -18,6 +18,6 @@ MonoBehaviour:
   CarModel: {fileID: 2140210782821797781, guid: 4c6a6a577c90e48a79075419aa44d0b9,
     type: 3}
   AvailableTextures: []
-  SpawnFrequency: 9
+  SpawnFrequency: 7
   OnHitDo: 0
   RotationOffset: {x: -90, y: 90, z: 0}

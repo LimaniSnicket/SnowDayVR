@@ -7,6 +7,7 @@ TagManager:
   - Body
   - Window
   - Wheel
+  - Floor
   layers:
   - Default
   - TransparentFX

@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4487fa1990dd54cdf91f8a9cf1c35d0e, type: 3}
-  m_Name: SUV
+  m_Name: PoliceCar
   m_EditorClassIdentifier: 
-  CarID: SUV
+  CarID: Police Car
   OnHitCarBonus: 0
-  MaxSpeed: 20
-  CarModel: {fileID: 242138929570646383, guid: 6b66f4838b5a54f1e82b910a185e86ef, type: 3}
+  MaxSpeed: 25
+  CarModel: {fileID: 2140210782821797781, guid: 9f54b2dfe8d674c3c8bdd9124c6688f6,
+    type: 3}
   AvailableTextures: []
-  SpawnFrequency: 9
-  OnHitDo: 0
-  RotationOffset: {x: 0, y: 0, z: 0}
+  SpawnFrequency: 2
+  OnHitDo: 1
+  RotationOffset: {x: -90, y: 90, z: 0}

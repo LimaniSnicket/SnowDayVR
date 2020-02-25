@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1280
     height: 655
-  m_MinSize: {x: 608, y: 498}
+  m_MinSize: {x: 606, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 43
+  controlID: 127
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 752
     height: 655
-  m_MinSize: {x: 406, y: 498}
+  m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 44
+  controlID: 61
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,10 +162,10 @@ MonoBehaviour:
     y: 0
     width: 752
     height: 381
-  m_MinSize: {x: 406, y: 224}
-  m_MaxSize: {x: 8006, y: 4024}
+  m_MinSize: {x: 404, y: 224}
+  m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 45
+  controlID: 62
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -185,8 +185,8 @@ MonoBehaviour:
     y: 0
     width: 336
     height: 381
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -382,9 +382,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: bafbffff
-      m_LastClickedID: -1094
-      m_ExpandedIDs: cafbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: defbffffc6230000e6230000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -440,9 +440,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 186.83034, y: -69.22264, z: -56.11113}
+    m_Target: {x: 82.44799, y: -4.682902, z: 29.470238}
     speed: 2
-    m_Value: {x: 186.83034, y: -69.22264, z: -56.11113}
+    m_Value: {x: 82.44799, y: -4.682902, z: 29.470238}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -470,13 +470,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.11554116, y: 0.7635786, z: -0.14250039, w: 0.6191152}
+    m_Target: {x: -0.1832863, y: 0.53246486, z: -0.11934583, w: -0.8177073}
     speed: 2
-    m_Value: {x: 0.115540475, y: 0.76357406, z: -0.14249954, w: 0.6191115}
+    m_Value: {x: -0.18328619, y: 0.53246456, z: -0.119345754, w: -0.8177068}
   m_Size:
-    m_Target: 189.52364
+    m_Target: 211.93112
     speed: 2
-    m_Value: 189.52364
+    m_Value: 211.93112
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -552,20 +552,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials/drive-download-20200220T173437Z-001
+    - Assets/Resources/Particles
   m_ViewMode: 1
   m_StartGridSize: 53
   m_LastFolders:
-  - Assets/Materials/drive-download-20200220T173437Z-001
+  - Assets/Resources/Particles
   m_LastFoldersGridSize: 53
   m_LastProjectPath: /Users/Vera/Desktop/SnowDayVR/SnowballVR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 44.99823}
-    m_SelectedIDs: 84390000
-    m_LastClickedID: 14724
-    m_ExpandedIDs: 00000000de2b0000e62b0000ec2c0000482e0000d22e0000e63000005c31000032330000d03300008e370000c43700009e3b0000be3c0000f63c0000363d000000ca9a3b
+    scrollPos: {x: 0, y: 90.000916}
+    m_SelectedIDs: 221d0000
+    m_LastClickedID: 7458
+    m_ExpandedIDs: 00000000200f0000280f0000301000008c11000016120000a01400007616000014170000d21a0000081b0000e41e0000042000003c2000007c20000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -593,7 +593,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000de2b0000e62b0000ec2c0000482e0000d22e0000e63000005c31000032330000d03300008e370000c43700009e3b0000be3c0000f63c0000363d0000
+    m_ExpandedIDs: 00000000200f0000280f0000301000008c110000161200002a140000a01400007616000014170000d21a0000081b0000e41e0000042000003c2000007c200000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
