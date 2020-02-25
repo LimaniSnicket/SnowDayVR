@@ -15,6 +15,7 @@ public class HandManager : MonoBehaviour
     private void Awake()
     {
         if (vrHands == null) { vrHands = this; } else { Destroy(this); }
+        ovrPairs = new Dictionary<bool, OVRGrabber>();
         LeftHand = LeftOVR.GetComponent<OVRGrabber>(); RightHand = RightOVR.GetComponent<OVRGrabber>();
         ovrPairs.Add(true, LeftHand); ovrPairs.Add(false, RightHand);
         StartCoroutine(ChangeInOvrPosition(true)); StartCoroutine(ChangeInOvrPosition(false)); //maybe start these if both hands are in the snow mound collider & stop on exit?
@@ -68,13 +69,11 @@ public class HandManager : MonoBehaviour
     public static IEnumerator SufficientHandMovement(float threshold, float seconds)
     {
         float t = 0;
-        while(ValidHands(threshold))
+        while(ValidHands(threshold)&& t<seconds)
         {
-            while (t < seconds)
-            {
-                t += 1;
-                yield return new WaitForSeconds(1);
-            }
+            t += 1;
+            yield return new WaitForSeconds(1);
+            if(t> seconds) { break; }
         }
 
         if (t >= seconds)

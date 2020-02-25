@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.8061149, g: 0.6150133, b: 0.66365755, a: 1}
+  m_IndirectSpecularColor: {r: 0.80611485, g: 0.61367935, b: 0.6630229, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -768,7 +768,6 @@ Terrain:
   m_MaterialTemplate: {fileID: 2100000, guid: 0ccbce08415074661833d0a7ee304581, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
-  m_DeringLightProbesForTrees: 0
   m_ScaleInLightmap: 0.1024
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
@@ -1080,6 +1079,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Sample text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 328180f247a0a4329af2328ee4998069, type: 2}
@@ -1425,7 +1426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669096782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 46.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1439952884}
@@ -1455,6 +1456,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5950305593054839109, guid: 1f8e620e24ce34991bbb7f7312c13827,
+        type: 3}
+      propertyPath: m_Name
+      value: OVRWithHands
+      objectReference: {fileID: 0}
     - target: {fileID: 5950305593054616933, guid: 1f8e620e24ce34991bbb7f7312c13827,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1463,12 +1469,12 @@ PrefabInstance:
     - target: {fileID: 5950305593054616933, guid: 1f8e620e24ce34991bbb7f7312c13827,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5950305593054616933, guid: 1f8e620e24ce34991bbb7f7312c13827,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -73.5
+      value: -25.7
       objectReference: {fileID: 0}
     - target: {fileID: 5950305593054616933, guid: 1f8e620e24ce34991bbb7f7312c13827,
         type: 3}
@@ -1509,11 +1515,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5950305593054839109, guid: 1f8e620e24ce34991bbb7f7312c13827,
-        type: 3}
-      propertyPath: m_Name
-      value: OVRWithHands
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f8e620e24ce34991bbb7f7312c13827, type: 3}
@@ -2096,7 +2097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a8ba1ae35114f93a32e12c4454d413, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -67.75
+      value: -20.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a8ba1ae35114f93a32e12c4454d413, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2269,7 +2270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370017417}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.1165, y: -0.61, z: -70.03}
+  m_LocalPosition: {x: -0.1165, y: -0.61, z: -23.079998}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7134,6 +7135,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7687794427038256919, guid: 920ad2011c6964222a1e8a51cb3900a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Mist (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 7687794427038256906, guid: 920ad2011c6964222a1e8a51cb3900a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7193,11 +7199,6 @@ PrefabInstance:
         type: 3}
       propertyPath: prewarm
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7687794427038256919, guid: 920ad2011c6964222a1e8a51cb3900a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Mist (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 920ad2011c6964222a1e8a51cb3900a5, type: 3}
@@ -7719,6 +7720,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7687794427038256919, guid: 920ad2011c6964222a1e8a51cb3900a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Mist
+      objectReference: {fileID: 0}
     - target: {fileID: 7687794427038256906, guid: 920ad2011c6964222a1e8a51cb3900a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7774,11 +7780,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.99999
       objectReference: {fileID: 0}
-    - target: {fileID: 7687794427038256916, guid: 920ad2011c6964222a1e8a51cb3900a5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3ab9a2d4f23024d219d732efbd43dd8a, type: 2}
     - target: {fileID: 7687794427038256917, guid: 920ad2011c6964222a1e8a51cb3900a5,
         type: 3}
       propertyPath: TrailModule.enabled
@@ -7799,10 +7800,10 @@ PrefabInstance:
       propertyPath: prewarm
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7687794427038256919, guid: 920ad2011c6964222a1e8a51cb3900a5,
+    - target: {fileID: 7687794427038256916, guid: 920ad2011c6964222a1e8a51cb3900a5,
         type: 3}
-      propertyPath: m_Name
-      value: Mist
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ab9a2d4f23024d219d732efbd43dd8a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 920ad2011c6964222a1e8a51cb3900a5, type: 3}
