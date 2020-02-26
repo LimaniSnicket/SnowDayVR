@@ -10,7 +10,8 @@ public class HandManager : MonoBehaviour
     public GameObject SnowballPrefab;
     private static Dictionary<bool, OVRGrabber> ovrPairs;
     private static float LeftHandPositionDerivative, RightHandPositionDerivative;
-  
+    private static bool TrackHands;
+    private static float HandsShakeTimer;
 
     private void Awake()
     {
@@ -22,15 +23,30 @@ public class HandManager : MonoBehaviour
         SnowMoundBehavior.OnHandMotionDetected += OnHandMotionInMound;
     }
 
+    private void FixedUpdate()
+    {
+        if (TrackHands)
+        {
+            if (!ValidHands())
+            {
+                HandsShakeTimer = 0;
+            } else
+            {
+                HandsShakeTimer += Time.deltaTime;
+            }
+        }
+    }
+
     public static void OnHandMotionInMound(bool valid)
     {
-        if (valid)
-        {
-            vrHands.StartCoroutine(SufficientHandMovement(1, 1));
-        } else
-        {
-            vrHands.StopCoroutine("SufficientHandMovement");
-        }
+        TrackHands = valid;
+        //if (valid)
+        //{
+        //    vrHands.StartCoroutine(SufficientHandMovement(1, 1));
+        //} else
+        //{
+        //    vrHands.StopCoroutine("SufficientHandMovement");
+        //}
     }
 
     public static OVRGrabber GetOVRGrabber(bool isLeft)

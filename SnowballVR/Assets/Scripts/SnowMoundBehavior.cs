@@ -10,6 +10,7 @@ public class SnowMoundBehavior : MonoBehaviour
     public static float availableSnow;
     public static bool canSpawnSnowball { get => Snowfall.activeSnowballs.Count == 0; }
     public float SnowLeft;
+    public float MaxSize = 400;
     static List<Collider> CollidersInTrigger = new List<Collider>();
     public static event Action<bool> OnHandMotionDetected;
     public static event Action<GameObject> HandToSpawn;
@@ -18,7 +19,6 @@ public class SnowMoundBehavior : MonoBehaviour
     {
         Snowfall.GameTimerDiminished += OnGameTimerDiminished;
         transform.localScale = new Vector3(100, 100, 0);
-        //StartCoroutine(AccumulateSnow());
         availableSnow = 1;
         if (snowMound == null) { snowMound = this; } else { Destroy(this); }
     }
@@ -27,28 +27,19 @@ public class SnowMoundBehavior : MonoBehaviour
     {
         SnowLeft = availableSnow;
         Vector3 s = transform.localScale + (Vector3.forward * availableSnow / 10);
-        transform.localScale = s;
+        transform.localScale = Max(transform.localScale);
     }
 
-    private IEnumerator AccumulateSnow()
+    private Vector3 Max(Vector3 comp)
     {
-        while (Snowfall.Snowing())
-        {
-            availableSnow += Snowfall.RateOfIncrease;
-            Vector3 lerpTo = transform.localScale + (Vector3.forward * availableSnow/2) * ScaleModifier;
-            while(!transform.localScale.Approximately(lerpTo))
-            {
-                transform.localScale = Vector3.Lerp(transform.localScale, lerpTo, Time.deltaTime);
-                yield return null;
-            }
-            yield return new WaitForEndOfFrame();
-        }
-        yield return null;
+        Vector3 m = new Vector3(100, 100, MaxSize);
+        return Vector3.Min(m, comp);
     }
 
     private void OnGameTimerDiminished()
     {
         availableSnow = 0f;
+        Destroy(GetComponent<Collider>());
     }
 
     private void OnTriggerEnter(Collider other)
