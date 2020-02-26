@@ -69,13 +69,11 @@ public class HandManager : MonoBehaviour
     public static IEnumerator SufficientHandMovement(float threshold, float seconds)
     {
         float t = 0;
-        while(ValidHands(threshold))
+        while(ValidHands(threshold)&& t<seconds)
         {
-            while (t < seconds)
-            {
-                t += 1;
-                yield return new WaitForSeconds(1);
-            }
+            t += 1;
+            yield return new WaitForSeconds(1);
+            if(t> seconds) { break; }
         }
 
         if (t >= seconds)
