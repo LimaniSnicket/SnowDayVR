@@ -74,7 +74,7 @@ public class SnowballBehavior : MonoBehaviour
             Destroy(gameObject);
         }
 
-       // snowballBody.isKinematic = !ungrabbed;
+        snowballBody.isKinematic = !ungrabbed;
 
     }
 

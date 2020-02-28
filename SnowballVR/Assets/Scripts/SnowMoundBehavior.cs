@@ -26,14 +26,9 @@ public class SnowMoundBehavior : MonoBehaviour
     private void Update()
     {
         SnowLeft = availableSnow;
+        availableSnow += Time.deltaTime * Snowfall.RateOfIncrease;
         Vector3 s = transform.localScale + (Vector3.forward * availableSnow / 10);
-        transform.localScale = Max(transform.localScale);
-    }
-
-    private Vector3 Max(Vector3 comp)
-    {
-        Vector3 m = new Vector3(100, 100, MaxSize);
-        return Vector3.Min(m, comp);
+        transform.localScale = s;
     }
 
     private void OnGameTimerDiminished()
@@ -50,6 +45,7 @@ public class SnowMoundBehavior : MonoBehaviour
         }
         if (CollidersInTrigger.Count == 2)
         {
+            Debug.Log("Here");
             OnHandMotionDetected(true);
             HandToSpawn(CollidersInTrigger[0].gameObject);
         }
@@ -57,7 +53,7 @@ public class SnowMoundBehavior : MonoBehaviour
 
     bool ValidGameObject(Collider c)
     {
-        return c.gameObject == HandManager.RightHand.gameObject || c.gameObject == HandManager.LeftHand.gameObject;
+        return c.gameObject == HandManager.RightHand.gameObject || c.gameObject == HandManager.LeftHand.gameObject || c.tag =="Test";
     }
 
     private void OnTriggerExit(Collider other)
@@ -67,7 +63,6 @@ public class SnowMoundBehavior : MonoBehaviour
             CollidersInTrigger.Remove(other);
         }
         OnHandMotionDetected(false);
-        //StopCoroutine(HandManager.SufficientHandMovement(1,3));
     }
 
     private void OnDestroy()
