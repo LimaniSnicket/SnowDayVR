@@ -10,8 +10,11 @@ public class HandManager : MonoBehaviour
     public GameObject SnowballPrefab;
     private static Dictionary<bool, OVRGrabber> ovrPairs;
     private static float LeftHandPositionDerivative, RightHandPositionDerivative;
+    public GameObject LeftTestHand, RightTestHand;
+    public float DebugTestDerivativeLeft, DebugTestDerivativeRight;
     private static bool TrackHands;
     private static float HandsShakeTimer;
+    private static GameObject spawnAt;
 
     private void Awake()
     {
@@ -20,11 +23,14 @@ public class HandManager : MonoBehaviour
         LeftHand = LeftOVR.GetComponent<OVRGrabber>(); RightHand = RightOVR.GetComponent<OVRGrabber>();
         ovrPairs.Add(true, LeftHand); ovrPairs.Add(false, RightHand);
         StartCoroutine(ChangeInOvrPosition(true)); StartCoroutine(ChangeInOvrPosition(false)); //maybe start these if both hands are in the snow mound collider & stop on exit?
+        StartCoroutine(ChangeInDebugPosition(true)); StartCoroutine(ChangeInDebugPosition(false));
         SnowMoundBehavior.OnHandMotionDetected += OnHandMotionInMound;
+        SnowMoundBehavior.HandToSpawn += OnHandSetSpawnPoint;
     }
 
     private void FixedUpdate()
     {
+        Debug.Log(ValidHands());
         if (TrackHands)
         {
             if (!ValidHands())
@@ -33,6 +39,19 @@ public class HandManager : MonoBehaviour
             } else
             {
                 HandsShakeTimer += Time.deltaTime;
+            }
+        }
+
+        if (HandsShakeTimer > 2)
+        {
+            if (SnowMoundBehavior.canSpawnSnowball)
+            {
+                SnowballBehavior b = Instantiate(vrHands.SnowballPrefab).GetComponent<SnowballBehavior>();
+                b.SetOVRGrabberFollow(GetOVRGrabber(true));
+            } else
+            {
+                Snowfall.ActiveSnowball().ScaleUp(LeftHandPositionDerivative + RightHandPositionDerivative);
+                Debug.Log("Add to snowball" + (LeftHandPositionDerivative + RightHandPositionDerivative));
             }
         }
     }
@@ -47,6 +66,11 @@ public class HandManager : MonoBehaviour
         //{
         //    vrHands.StopCoroutine("SufficientHandMovement");
         //}
+    }
+
+    void OnHandSetSpawnPoint(GameObject g)
+    {
+        spawnAt = g;
     }
 
     public static OVRGrabber GetOVRGrabber(bool isLeft)
@@ -67,7 +91,7 @@ public class HandManager : MonoBehaviour
         return g.transform.position;
     }
 
-    static bool ValidHands(float threshold = 0.5f)
+    static bool ValidHands(float threshold = 0.1f)
     {
         return LeftHandPositionDerivative >= threshold && RightHandPositionDerivative >= threshold;
     }
@@ -122,8 +146,19 @@ public class HandManager : MonoBehaviour
         yield return vrHands.StartCoroutine(ChangeInOvrPosition(isLeft));
     }
 
+    private  IEnumerator ChangeInDebugPosition(bool isLeft)
+    {
+        Vector3 a = isLeft ? LeftTestHand.transform.position : RightTestHand.transform.position;
+        yield return new WaitForFixedUpdate();
+        Vector3 b = isLeft ? LeftTestHand.transform.position : RightTestHand.transform.position;
+        float derivative = (b - a).magnitude;
+        if (isLeft) { DebugTestDerivativeLeft = derivative; } else { DebugTestDerivativeRight = derivative; }
+        yield return vrHands.StartCoroutine(ChangeInDebugPosition(isLeft));
+    }
+
     private void OnDestroy()
     {
         SnowMoundBehavior.OnHandMotionDetected -= OnHandMotionInMound;
+        SnowMoundBehavior.HandToSpawn -= OnHandSetSpawnPoint;
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Window
   - Wheel
   - Floor
+  - Test
   layers:
   - Default
   - TransparentFX
