@@ -34,7 +34,7 @@ public class SnowMoundBehavior : MonoBehaviour
     private void OnGameTimerDiminished()
     {
         availableSnow = 0f;
-        Destroy(GetComponent<Collider>());
+        //Destroy(GetComponent<Collider>());
     }
 
     private void OnTriggerEnter(Collider other)

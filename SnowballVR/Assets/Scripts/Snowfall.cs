@@ -36,6 +36,7 @@ public class Snowfall : MonoBehaviour
         if (Mathf.Approximately(TimeRemaining, 0))
         {
             GameTimerDiminished();
+            RateOfIncrease = 0;
         }
         DirectionalLight.transform.Rotate(Vector3.right * Time.deltaTime * DirectionalLightIncrement());
     }
